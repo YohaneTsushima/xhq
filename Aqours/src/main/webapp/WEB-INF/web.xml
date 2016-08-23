@@ -23,6 +23,10 @@
        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>    
+    <!-- 防止spring内存溢出 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
     <!-- url -->
     <servlet-mapping>
        <servlet-name>Aqours</servlet-name>
