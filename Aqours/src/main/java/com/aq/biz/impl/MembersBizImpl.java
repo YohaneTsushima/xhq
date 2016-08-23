@@ -22,7 +22,7 @@ public class MembersBizImpl implements MembersBiz{
 		// TODO Auto-generated method stub
 		return membersDao.getAllMembers();
 	}
-
+/*
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MembersBiz membersBiz = (MembersBiz) context.getBean("membersBiz");
@@ -32,5 +32,5 @@ public class MembersBizImpl implements MembersBiz{
 			System.out.println(members.getEmail());
 			System.out.println(members.getPhone());
 		}
-	}
+	}*/
 }
