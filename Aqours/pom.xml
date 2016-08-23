@@ -14,7 +14,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.5</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- JSTL -->
@@ -40,6 +40,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
+		  <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-test</artifactId>  
+            <version>${springframework.version}</version>  
+            <scope>test</scope>  
+        </dependency>  
 		<!-- dbcp 数据源（连接池），必须 -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
