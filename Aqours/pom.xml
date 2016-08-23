@@ -11,12 +11,6 @@
 		<tiles.version>3.0.5</tiles.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.5</version>
-			<scope>test</scope>
-		</dependency>
 		<!-- JSTL -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -83,7 +77,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.0</version>
+			<version>4.5</version>
 		</dependency>
 		<!-- <dependency>
 			<groupId>com.oracle</groupId>
@@ -140,11 +134,6 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>5.1.25</version>
 		</dependency>
-		<dependency>  
-            <groupId>org.apache.struts</groupId>  
-            <artifactId>struts2-core</artifactId>  
-            <version>2.3.1.2</version>  
-        </dependency> 
         <dependency>  
             <groupId>javassist</groupId>  
             <artifactId>javassist</artifactId> 
