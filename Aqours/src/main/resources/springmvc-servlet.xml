@@ -19,13 +19,28 @@
 	
 	<!-- 配置jsp视图解析器 -->
 	<bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="1"/>
+		<property name="order" value="2"/>
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <!-- 前缀：从根目录到视图文件夹 -->
 		<property name="prefix" value="/WEB-INF/views/" />	
         <!--视图文件的后缀名 -->
 	    <property name="suffix" value=".jsp" />
 	</bean>     
+	
+	<!--  Spring整合Tiles3 的VeiwResolver -->
+	 <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<property name="order" value="1"/>
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.tiles3.TilesView</value>
+		</property>
+	 </bean>
+	 <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles-definitions.xml</value>
+			</list>
+		</property>
+	 </bean>
 	<!-- 类型转换器 -->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
 		<property name="converters">
