@@ -15,7 +15,7 @@ public class DateConverter implements Converter<String, Date>{
 
 	@Override
 	public Date convert(String value) {
-		// TODO Auto-generated method stub
+		// TODO 实现日期转换
 		if(value == null || value.isEmpty()){
 			return null;
 		}else {
@@ -24,7 +24,7 @@ public class DateConverter implements Converter<String, Date>{
 				try {
 					return sdf.parse(value);
 				} catch (Exception e) {
-					// TODO: handle exception
+					// TODO: 转换异常时候继续下一步
 					continue;
 				}
 			}

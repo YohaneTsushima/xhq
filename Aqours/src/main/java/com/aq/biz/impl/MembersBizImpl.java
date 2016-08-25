@@ -17,7 +17,7 @@ public class MembersBizImpl implements MembersBiz{
 	
 	@Override
 	public List<Members> getAllMembers() {
-		// TODO Auto-generated method stub
+		// TODO 获取所有成员的方法
 		return membersDao.getAllMembers();
 	}
 /*
