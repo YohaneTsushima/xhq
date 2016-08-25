@@ -8,4 +8,5 @@
 			<td>{{x.email}}</td>
 		</tr>
 	</table>
+	<input id="d11" type="text"  onClick="WdatePicker()" readonly="readonly">
 </div>
