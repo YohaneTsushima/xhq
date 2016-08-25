@@ -42,7 +42,7 @@ public class DateConverter extends JsonSerializer<Date> implements Converter<Str
 	@Override
 	public void serialize(Date value, JsonGenerator generator, SerializerProvider provider)
 			throws IOException, JsonProcessingException {
-		// TODO Auto-generated method stub
+		// TODO:  json格式日期转换
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		generator.writeString(sdf.format(value));
 	}
