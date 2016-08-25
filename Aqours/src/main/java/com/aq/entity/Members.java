@@ -2,6 +2,9 @@ package com.aq.entity;
 
 import java.util.Date;
 
+import com.aq.web.converter.DateConverter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Members {
 
 	private int id;
@@ -24,6 +27,7 @@ public class Members {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+	@JsonSerialize(using = DateConverter.class)
 	public Date getRegDate() {
 		return regDate;
 	}
