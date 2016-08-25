@@ -10,17 +10,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath }/js/angular.js"></script>
-<script type="text/javascript">
-	var app = angular.module('myApp', []);
-	app.controller('memberCtrl', function($scope, $http){
-		$http.get("${pageContext.request.contextPath }/member")
-			.success(function(response){
-				$scope.members = response.members;
-			}).error(function(error){
-				alert(error);
-			});
-	});
-</script>
 <title></title>
 </head>
 <body>
