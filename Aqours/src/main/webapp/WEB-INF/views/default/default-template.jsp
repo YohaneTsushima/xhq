@@ -21,12 +21,12 @@
 			});
 	});
 </script>
-<title>hello</title>
+<title></title>
 </head>
 <body>
 	<div class="container">
 		<t:insertAttribute name="header"/>
-		<t:insertAttribute name="home"/>
+		<t:insertAttribute name="main"/>
 	</div>
 </body>
 </html>
