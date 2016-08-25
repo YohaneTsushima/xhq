@@ -19,7 +19,7 @@ public class TestController{
 	@Autowired
 	private MembersBiz memberBiz;
 	
-	@RequestMapping("home")
+	@RequestMapping("/")
 	public String home() {
 		
 		return "home";
