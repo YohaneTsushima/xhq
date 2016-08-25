@@ -4,11 +4,35 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link href="${pageContext.request.contextPath }/css/bootstrap.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.validate.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.js"></script>
+		<script src="${pageContext.request.contextPath }/js/angular.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+			app.controller('memberCtrl', function($scope, $http){
+				$http.get("${pageContext.request.contextPath }/member")
+				.success(function(response){
+					$scope.members = response.members;
+				}).error(function(error){
+					alert(error);
+				});
+			});
+		</script>
 		<title>hello</title>
 	</head>
 	<body>
-		<h1>hello</h1>
+		<div class="container">
+			<div ng-app="myApp" ng-controller="memberCtrl">
+				<table class="table">
+					<tr ng-repeat="x in members">
+						<td>{{x.memberName}}</td>
+						<td>{{x.phone}}</td>
+						<td>{{x.email}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</body>
 </html>
