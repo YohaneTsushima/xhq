@@ -31,4 +31,10 @@ public class MembersBizImpl implements MembersBiz{
 			System.out.println(members.getPhone());
 		}
 	}*/
+
+	@Override
+	public Members getMemberDetail(int id) {
+		// TODO Auto-generated method stub
+		return membersDao.getMemberDetail(id);
+	}
 }

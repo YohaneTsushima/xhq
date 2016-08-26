@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aq.biz.MembersBiz;
@@ -38,5 +40,13 @@ public class HomeController{
 		map.put("members", lst);
 		
 		return map;
+	}
+	
+	@RequestMapping("detail")
+	public String member_detail(Model model, @RequestParam(name="id", required=false, defaultValue="0")int id){
+		
+		Members members = memberBiz.getMemberDetail(id);
+		model.addAttribute("member", members);
+		return "member-detail";
 	}
 }

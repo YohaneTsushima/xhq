@@ -7,4 +7,6 @@ import com.aq.entity.Members;
 public interface MembersDao {
 
 	List<Members> getAllMembers();
+	
+	Members getMemberDetail(int id);
 }
