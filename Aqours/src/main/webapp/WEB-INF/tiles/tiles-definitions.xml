@@ -15,4 +15,10 @@
 		<put-attribute name="title" value="首页" />
 		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
 	</definition>
+	
+	<!-- 详细 -->
+	<definition name="member-detail" extends="defaultTemplate">
+		<put-attribute name="title" value="详细" />
+		<put-attribute name="main" value="/WEB-INF/views/member-detail.jsp" />
+	</definition>
 </tiles-definitions>

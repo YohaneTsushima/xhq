@@ -21,4 +21,8 @@
 	<select id="getAllMembers" resultMap="membersResultMap">
 		select <include refid="membersColums" />
 	</select>
+	
+	<select parameterType="int" id="getMemberDetail" resultMap="membersResultMap">
+		select <include refid="membersColums" /> where m.id = #{id}
+	</select>
 </mapper>

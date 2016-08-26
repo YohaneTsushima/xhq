@@ -7,4 +7,5 @@ import com.aq.entity.Members;
 public interface MembersBiz {
 
 	List<Members> getAllMembers();
+	Members getMemberDetail(int id);
 }
