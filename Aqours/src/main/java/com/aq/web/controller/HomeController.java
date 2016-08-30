@@ -1,5 +1,6 @@
 package com.aq.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,16 +43,11 @@ public class HomeController{
 		page.setPageSize(2);
 		
 		//条数
-		int total = memberBiz.getMemberCount();
-		page.setTotalRecord(total);
+		page.setTotalRecord(memberBiz.getMemberCount());
 		
-		//页数
-		int totalPage = (int)Math.ceil((double)total/page.getPageSize());
-		page.setTotalPage(totalPage);
 		if(page.getTotalPage() == 0){
 			page.setTotalPage(1);
 		}
-		int current = page.getPageNo() / page.getPageSize()+1;
 		
 		Map<String, Object> map = new HashMap<>();
 		
@@ -59,7 +55,6 @@ public class HomeController{
 		
 		map.put("members", lst);
 		map.put("page", page);
-		map.put("current", current);
 		
 		return map;
 	}

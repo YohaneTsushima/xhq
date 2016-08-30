@@ -44,7 +44,7 @@
 	<div class="page">
 		<ul class="pagination">
 			<li><a ng-click="getMember(pageNo-pageSize)" href="javascript:void(0);" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-			<li ng-repeat="p in page"><a ng-click="getMember(p)" href="javascript:void(0);">{{p}}</a></li>
+			<li ng-repeat="p in page"><a ng-click="getMember((p-1)*pageSize)" href="javascript:void(0);">{{p}}</a></li>
 			<li><a ng-click="getMember(pageNo+pageSize)" href="javascript:void(0);" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 		</ul>
 	</div>
