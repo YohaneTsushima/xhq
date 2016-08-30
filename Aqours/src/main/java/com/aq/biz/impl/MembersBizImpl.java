@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.aq.biz.MembersBiz;
 import com.aq.dao.MembersDao;
 import com.aq.entity.Members;
+import com.aq.entity.Page;
 
 @Service("membersBiz")
 public class MembersBizImpl implements MembersBiz{
@@ -16,9 +17,9 @@ public class MembersBizImpl implements MembersBiz{
 	private MembersDao membersDao;
 	
 	@Override
-	public List<Members> getAllMembers() {
+	public List<Members> getAllMembers(Page page) {
 		// TODO 获取所有成员的方法
-		return membersDao.getAllMembers();
+		return membersDao.getAllMembers(page);
 	}
 /*
 	public static void main(String[] args) {
@@ -36,5 +37,11 @@ public class MembersBizImpl implements MembersBiz{
 	public Members getMemberDetail(int id) {
 		// TODO Auto-generated method stub
 		return membersDao.getMemberDetail(id);
+	}
+
+	@Override
+	public int getMemberCount() {
+		// TODO Auto-generated method stub
+		return membersDao.getMemberCount();
 	}
 }

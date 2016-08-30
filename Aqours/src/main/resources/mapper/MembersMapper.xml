@@ -18,11 +18,15 @@
 		<result column="m_email" property="email"/>
 	</resultMap>
 	
-	<select id="getAllMembers" resultMap="membersResultMap">
-		select <include refid="membersColums" />
+	<select id="getAllMembers" parameterType="Page" resultMap="membersResultMap">
+		select <include refid="membersColums" /> limit #{page.pageNo}, #{page.pageSize}
 	</select>
 	
 	<select parameterType="int" id="getMemberDetail" resultMap="membersResultMap">
 		select <include refid="membersColums" /> where m.id = #{id}
+	</select>
+	
+	<select id="getMemberCount" resultType="int">
+		select count(m.id) from members m
 	</select>
 </mapper>
