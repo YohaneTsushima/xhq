@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aq.biz.MembersBiz;
 import com.aq.entity.Members;
+import com.aq.entity.Page;
 
 @Controller
 @RequestMapping("/")
@@ -31,13 +32,34 @@ public class HomeController{
 	
 	@RequestMapping("member")
 	@ResponseBody
-	public Map<String, Object> getMember(){
+	public Map<String, Object> getMember(Page page){
+		
+		// 1-2,3-4,5-6...
+		//pageNo=pageNo!=null?pageNo:0;
+		if(page.getPageNo() < 1){
+			page.setPageNo(0);
+		}
+		page.setPageSize(2);
+		
+		//条数
+		int total = memberBiz.getMemberCount();
+		page.setTotalRecord(total);
+		
+		//页数
+		int totalPage = (int)Math.ceil((double)total/page.getPageSize());
+		page.setTotalPage(totalPage);
+		if(page.getTotalPage() == 0){
+			page.setTotalPage(1);
+		}
+		int current = page.getPageNo() / page.getPageSize()+1;
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		List<Members> lst = memberBiz.getAllMembers();
+		List<Members> lst = memberBiz.getAllMembers(page);
 		
 		map.put("members", lst);
+		map.put("page", page);
+		map.put("current", current);
 		
 		return map;
 	}
