@@ -34,10 +34,10 @@ public class Page {
 	}
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
-		this.totalPage = (this.totalRecord + this.pageSize -1)/this.pageSize;
-		if(this.pageNo > this.totalPage){
+		this.totalPage = (int)Math.ceil((double)this.totalRecord/this.pageSize);
+		/*if(this.pageNo > this.totalPage){
 			this.pageNo = 1;
-		}
+		}*/
 		this.setSlide();
 	}
 	public Integer[] getSlide() {
@@ -50,6 +50,8 @@ public class Page {
 		List<Integer> lst = new ArrayList <Integer>();
 		if(this.totalPage<=20){
 			for(int i=1;i<=this.totalPage;i++){
+				// 1-0,2-2,3-4,4-6,5-8
+				//(1-1)*2,(2-1+)*2 ,(3-1)*2, (4-1)*2
 				lst.add(i);
 			}
 		}else{
