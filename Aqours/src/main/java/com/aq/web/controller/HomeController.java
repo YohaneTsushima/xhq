@@ -1,6 +1,5 @@
 package com.aq.web.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,10 +48,12 @@ public class HomeController{
 		if(page.getTotalPage() == 0){
 			page.setTotalPage(1);
 		}
-		
-		Map<String, Object> map = new HashMap<>();
+		if((page.getPageNo()/page.getPageSize()) >= page.getTotalPage()){
+			page.setPageNo((page.getTotalPage()-1) * page.getPageSize());
+		}
 		
 		List<Members> lst = memberBiz.getAllMembers(page);
+		Map<String, Object> map = new HashMap<>();
 		
 		map.put("members", lst);
 		map.put("page", page);
@@ -59,7 +61,7 @@ public class HomeController{
 		return map;
 	}
 	
-	@RequestMapping("detail")
+	@RequestMapping(value="detail", method=RequestMethod.GET)
 	public String member_detail(Model model, @RequestParam(name="id", required=false, defaultValue="0")int id){
 		
 		Members members = memberBiz.getMemberDetail(id);
