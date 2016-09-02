@@ -40,7 +40,7 @@ public class HomeController{
 		if(page.getPageNo() < 1){
 			page.setPageNo(0);
 		}
-		page.setPageSize(2);
+		page.setPageSize(5);
 		
 		//条数
 		page.setTotalRecord(memberBiz.getMemberCount());

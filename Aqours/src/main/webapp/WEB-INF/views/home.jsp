@@ -15,6 +15,7 @@
 		}).error(function(error){
 			alert(error);
 		});
+		
 		$scope.getMember = function(pageNo){
 			url = "${pageContext.request.contextPath }/member?pageNo="+pageNo;
 			$http.get(url)
@@ -23,6 +24,7 @@
 				$scope.pageNo = response.page.pageNo;
 				$scope.pageSize = response.page.pageSize;
 				$scope.page = response.page.slide;
+				$scope.total = response.page.totalPage;
 				$scope.current = response.current;
 			}).error(function(error){
 				alert(error);
@@ -32,7 +34,7 @@
 	});
 </script>
 <div ng-app="myApp" ng-controller="memberCtrl">
-	<table class="table" style="height: 80px;">
+	<table class="table" style="height: 200px;">
 		<tr ng-repeat="x in members">
 			<td><a href="${pageContext.request.contextPath }/detail?id={{x.id}}">{{x.memberName}}</a></td>
 			<td>{{x.regDate}}</td>
