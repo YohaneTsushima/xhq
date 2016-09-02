@@ -18,8 +18,6 @@ import com.aq.biz.MembersBiz;
 import com.aq.entity.Members;
 import com.aq.entity.Page;
 
-import sun.util.logging.resources.logging;
-
 @Controller
 @RequestMapping("/")
 public class HomeController{
@@ -74,5 +72,16 @@ public class HomeController{
 		Members members = memberBiz.getMemberDetail(id);
 		model.addAttribute("member", members);
 		return "member-detail";
+	}
+	
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	@ResponseBody
+	public void addMember(Members members){
+		memberBiz.addMember(members);
+	}
+	
+	@RequestMapping(value = "checkMemberName", method = RequestMethod.GET)
+	public boolean checkName(String name){
+		return memberBiz.checkMember(name);
 	}
 }
