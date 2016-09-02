@@ -53,7 +53,19 @@ jQuery(document).ready(function($) {
 	//注册验证
 	$("#registForm").validate({
 		rules:{
-			memberName: "required",
+			memberName: {
+				required: true,
+				remote:{
+					url:"${pageContext.request.contextPath}/checkMemberName",
+					type:"GET",
+					dataType:"json",
+					data:{
+						memberName:function(){
+							return $(".member_name").val();
+						}
+					}
+				}
+			},
 			password: {
 				required: true,
 		        minlength: 6
@@ -68,7 +80,10 @@ jQuery(document).ready(function($) {
 			}
 		},
 		messages:{
-			memberName:"用户名不能为空",
+			memberName:{
+				required:"用户名不能为空",
+				remote:"用户已存在"
+			},
 			password:{
 				required: "密码不能为空",
 				minlength: "密码长度不能小于6"
@@ -121,7 +136,7 @@ jQuery(document).ready(function($) {
         	<div class="form-group" style="height: 30px;">
 				<label for="memberName" class="col-sm-2 control-label">用户名</label>
 				<div class="col-sm-5">
-					<input type="text" name="memberName" class="form-control" placeholder="用户名">
+					<input type="text" name="memberName" class="form-control member_name" placeholder="用户名">
 				</div>
 			</div>
 			<div class="form-group" style="height: 30px;">
@@ -179,7 +194,7 @@ jQuery(document).ready(function($) {
 			 </div>
 			 <div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-warning confirm">注册</button>
+			      <button type="submit" class="btn btn-warning register">注册</button>
 			 	</div>
 			 </div>
       	</form>

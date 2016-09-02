@@ -26,7 +26,14 @@
 		select <include refid="membersColums" /> where m.id = #{id}
 	</select>
 	
+	<select parameterType="String" id="getMemberDetail" resultMap="membersResultMap">
+		select <include refid="membersColums" /> where m.memberName = #{name}
+	</select>
+	
 	<select id="getMemberCount" resultType="int">
 		select count(m.id) from members m
 	</select>
+	<insert id="addMember">
+		insert into Members(loginName, password, email, regDate) values(#{members.loginName}, #{members.password}, #{members.email}, #{members.regDate})
+	</insert>
 </mapper>
