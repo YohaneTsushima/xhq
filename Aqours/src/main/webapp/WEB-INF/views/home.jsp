@@ -32,7 +32,7 @@
 	});
 </script>
 <div ng-app="myApp" ng-controller="memberCtrl">
-	<table class="table" style="height: 80px;" border="1">
+	<table class="table" style="height: 80px;">
 		<tr ng-repeat="x in members">
 			<td><a href="${pageContext.request.contextPath }/detail?id={{x.id}}">{{x.memberName}}</a></td>
 			<td>{{x.regDate}}</td>
