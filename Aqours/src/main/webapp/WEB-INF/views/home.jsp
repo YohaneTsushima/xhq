@@ -32,7 +32,7 @@
 	});
 </script>
 <div ng-app="myApp" ng-controller="memberCtrl">
-	<table class="table">
+	<table class="table" style="height: 80px;" border="1">
 		<tr ng-repeat="x in members">
 			<td><a href="${pageContext.request.contextPath }/detail?id={{x.id}}">{{x.memberName}}</a></td>
 			<td>{{x.regDate}}</td>
@@ -45,7 +45,7 @@
 		<ul class="pagination">
 			<li><a ng-click="getMember(pageNo-pageSize)" href="javascript:void(0);" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 			<li ng-repeat="p in page"><a ng-click="getMember((p-1)*pageSize)" href="javascript:void(0);">{{p}}</a></li>
-			<li><a ng-click="getMember(pageNo+pageSize)" href="javascript:void(0);" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+			<li><a class="" ng-click="getMember(pageNo+pageSize)" href="javascript:void(0);" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 		</ul>
 	</div>
 	<input id="d11" type="text"  onClick="WdatePicker()" readonly="readonly">
