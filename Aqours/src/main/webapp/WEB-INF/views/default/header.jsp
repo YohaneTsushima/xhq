@@ -33,6 +33,13 @@ jQuery(document).ready(function($) {
 			memberName:"用户名不能为空",
 			password:"密码不能为空"
 		},
+		highlight :function(element){
+			$(element).closest('.form-group').addClass('has-error'); 
+		},
+		success : function(label) {  
+            label.closest('.form-group').removeClass('has-error').addClass('has-success');  
+            label.remove();  
+        },  
 		errorPlacement:function(error, element){
 			if (element.is(":input")) {
                 error.insertAfter(element.parent());
@@ -40,10 +47,7 @@ jQuery(document).ready(function($) {
                 error.insertAfter(element);
             }
 		},
-		errorElement: "has-error",
-		success: function(label){
-			label.removeClass("has-error").addClass("has-success");
-		}
+		
 	});
 });
 
