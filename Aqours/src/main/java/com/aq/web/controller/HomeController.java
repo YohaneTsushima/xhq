@@ -18,6 +18,8 @@ import com.aq.biz.MembersBiz;
 import com.aq.entity.Members;
 import com.aq.entity.Page;
 
+import sun.util.logging.resources.logging;
+
 @Controller
 @RequestMapping("/")
 public class HomeController{
@@ -29,6 +31,11 @@ public class HomeController{
 	public String home(HttpSession session) {
 		
 		return "home";
+	}
+	
+	@RequestMapping("login")
+	public String loggin(){
+		return "login";
 	}
 	
 	@RequestMapping("member")
