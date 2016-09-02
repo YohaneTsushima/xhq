@@ -14,6 +14,7 @@ jQuery(document).ready(function($) {
 		$('.theme-popover-login').slideDown(200);
 	});
 	$('.theme-poptit .close').click(function(){
+		$('input').val('');
 		$('.theme-popover-mask').fadeOut(100);
 		$('.theme-popover').slideUp(200);
 	});
@@ -23,7 +24,7 @@ jQuery(document).ready(function($) {
 		$('.theme-popover-regist').slideDown(200);
 	});
 	
-	
+	//登录验证
 	$("#loginForm").validate({
 		rules:{
 			memberName: "required",
@@ -34,7 +35,7 @@ jQuery(document).ready(function($) {
 			password:"密码不能为空"
 		},
 		highlight :function(element){
-			$(element).closest('.form-group').addClass('has-error'); 
+			$(element).closest('.form-group').addClass('has-error').removeClass('has-success'); 
 		},
 		success : function(label) {  
             label.closest('.form-group').removeClass('has-error').addClass('has-success');  
@@ -46,8 +47,55 @@ jQuery(document).ready(function($) {
             } else {
                 error.insertAfter(element);
             }
+		}
+	});
+	
+	//注册验证
+	$("#registForm").validate({
+		rules:{
+			memberName: "required",
+			password: {
+				required: true,
+		        minlength: 6
+			},
+			confirm_password:{
+				required:true,
+				equalTo: "#password"
+			},
+			email:{
+				required: true,
+		        email: true
+			}
 		},
-		
+		messages:{
+			memberName:"用户名不能为空",
+			password:{
+				required: "密码不能为空",
+				minlength: "密码长度不能小于6"
+			},
+			confirm_password:{
+				required: "请填写确认密码",
+				equalTo: "2次密码不一致"
+			},
+			email:{
+				required:"邮箱不能为空",
+				email: "请输入一个正确的邮箱"
+			}
+		},
+		highlight :function(element){
+			$(element).closest('.form-group').addClass('has-error').removeClass('has-success'); 
+		},
+		success : function(label) {  
+            label.closest('.form-group').removeClass('has-error').addClass('has-success');  
+            label.remove();  
+        },  
+		errorPlacement:function(error, element){
+			if (element.is(":input")) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+		}
 	});
 });
 
@@ -70,19 +118,19 @@ jQuery(document).ready(function($) {
 	</div>
     <div class="theme-popbod dform">
     	<form class="theme-signin form-horizontal" id="loginForm" name="loginform" action="" method="post">
-        	<div class="form-group">
+        	<div class="form-group" style="height: 30px;">
 				<label for="memberName" class="col-sm-2 control-label">用户名</label>
 				<div class="col-sm-5">
-					<input type="text" name="memberName" class="form-control" id="memberName" placeholder="用户名">
+					<input type="text" name="memberName" class="form-control" placeholder="用户名">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" style="height: 30px;">
 				<label for="password" class="col-sm-2 control-label">密码</label>
 				<div class="col-sm-5">
-					<input type="password" name="password" class="form-control" id="password" placeholder="密码">
+					<input type="password" name="password" class="form-control" placeholder="密码">
 				</div>
 			 </div>
-			 <div class="form-group remember">
+			 <div class="form-group remember" style="height: 30px;">
 			 	<div class="col-sm-offset-2 col-sm-10">
 	      			<div class="checkbox">
 	        			<label> <input type="checkbox">记住我</label>
@@ -105,28 +153,28 @@ jQuery(document).ready(function($) {
 	</div>
     <div class="theme-popbod dform">
     	<form class="theme-signin form-horizontal" id="registForm" name="registform" action="" method="post">
-        	<div class="form-group">
+        	<div class="form-group" style="height: 30px;">
 				<label for="memberName" class="col-sm-2 control-label">用户名</label>
 				<div class="col-sm-5">
-					<input type="text" name="memberName" class="form-control" id="memberName" placeholder="用户名">
+					<input type="text" name="memberName" class="form-control" placeholder="用户名">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" style="height: 30px;">
 				<label for="password" class="col-sm-2 control-label">密码</label>
 				<div class="col-sm-5">
 					<input type="password" name="password" class="form-control" id="password" placeholder="密码">
 				</div>
 			 </div>
-			 <div class="form-group confirm_password">
+			 <div class="form-group" style="height: 30px;">
 				<label for="confirm_password" class="col-sm-2 control-label">确认密码</label>
 				<div class="col-sm-5">
-					<input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="确认密码">
+					<input type="password" name="confirm_password" class="form-control"  placeholder="确认密码">
 				</div>
 			 </div>
-			 <div class="form-group email">
+			 <div class="form-group" style="height: 30px;">
 				<label for="email" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-5">
-					<input type="text" name="email" class="form-control" id="email" placeholder="Email">
+					<input type="text" name="email" class="form-control" placeholder="Email">
 				</div>
 			 </div>
 			 <div class="form-group">
