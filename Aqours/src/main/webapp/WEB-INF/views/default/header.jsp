@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
 		$('.theme-popover h3').text('登陆');
 		$('.theme-popover .remember').show();
 		$('.theme-popover .email').hide();
+		$('.theme-popover .confirm_password').hide();
 		$('.theme-popover .confirm').text('登陆');
 		$('.theme-popover .confirm').css('btn-success');
 		$('.theme-popover-mask').fadeIn(100);
@@ -21,6 +22,7 @@ jQuery(document).ready(function($) {
 		$('.theme-popover h3').text('快速注册');
 		$('.theme-popover .remember').hide();
 		$('.theme-popover .email').show();
+		$('.theme-popover .confirm_password').show();
 		$('.theme-popover .confirm').text('注册');
 		$('.theme-popover .confirm').css('btn-warning');
 		$('.theme-popover-mask').fadeIn(100);
@@ -28,6 +30,8 @@ jQuery(document).ready(function($) {
 	});
 	
 });
+
+
 </script>
 <div>
 	<nav class="navbar navbar-default" role="navigation">
@@ -56,6 +60,12 @@ jQuery(document).ready(function($) {
 				<label for="password" class="col-sm-2 control-label">密码</label>
 				<div class="col-sm-5">
 					<input type="password" name="password" class="form-control" id="password" placeholder="密码">
+				</div>
+			 </div>
+			 <div class="form-group confirm_password">
+				<label for="confirm_password" class="col-sm-2 control-label">确认密码</label>
+				<div class="col-sm-5">
+					<input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="确认密码">
 				</div>
 			 </div>
 			 <div class="form-group email">
