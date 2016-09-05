@@ -44,20 +44,4 @@ public class MembersBizImpl implements MembersBiz{
 		// TODO Auto-generated method stub
 		return membersDao.getMemberCount();
 	}
-
-	@Override
-	public void addMember(Members members) {
-		// TODO Auto-generated method stub
-		membersDao.addMember(members);
-	}
-
-	@Override
-	public boolean checkMember(String name) {
-		// TODO Auto-generated method stub
-		String memberName = membersDao.getMemberDetail(name).getMemberName();
-		if(!memberName.isEmpty()){
-			return true;
-		}
-		return false;
-	}
 }

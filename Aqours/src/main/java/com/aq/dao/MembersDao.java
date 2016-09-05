@@ -14,8 +14,4 @@ public interface MembersDao {
 	Members getMemberDetail(int id);
 	
 	int getMemberCount();
-	
-	void addMember(Members members);
-	
-	Members getMemberDetail(String name);
 }
