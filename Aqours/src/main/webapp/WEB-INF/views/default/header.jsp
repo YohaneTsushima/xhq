@@ -27,11 +27,11 @@ jQuery(document).ready(function($) {
 	//登录验证
 	$("#loginForm").validate({
 		rules:{
-			memberName: "required",
+			login_name: "required",
 			password: "required"
 		},
 		messages:{
-			memberName:"用户名不能为空",
+			login_name:"用户名不能为空",
 			password:"密码不能为空"
 		},
 		highlight :function(element){
@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
 	//注册验证
 	$("#registForm").validate({
 		rules:{
-			memberName: {
+			login_name: {
 				required: true,
 				remote:{
 					url:"${pageContext.request.contextPath}/checkMemberName",
@@ -80,7 +80,7 @@ jQuery(document).ready(function($) {
 			}
 		},
 		messages:{
-			memberName:{
+			login_name:{
 				required:"用户名不能为空",
 				remote:"用户已存在"
 			},
@@ -134,9 +134,9 @@ jQuery(document).ready(function($) {
     <div class="theme-popbod dform">
     	<form class="theme-signin form-horizontal" id="loginForm" name="loginform" action="" method="post">
         	<div class="form-group" style="height: 30px;">
-				<label for="memberName" class="col-sm-2 control-label">用户名</label>
+				<label for="login_name" class="col-sm-2 control-label">登陆名</label>
 				<div class="col-sm-5">
-					<input type="text" name="memberName" class="form-control member_name" placeholder="用户名">
+					<input type="text" name="login_name" class="form-control login_name" placeholder="登陆名">
 				</div>
 			</div>
 			<div class="form-group" style="height: 30px;">
@@ -169,9 +169,9 @@ jQuery(document).ready(function($) {
     <div class="theme-popbod dform">
     	<form class="theme-signin form-horizontal" id="registForm" name="registform" action="" method="post">
         	<div class="form-group" style="height: 30px;">
-				<label for="memberName" class="col-sm-2 control-label">用户名</label>
+				<label for="login_name" class="col-sm-2 control-label">登陆名</label>
 				<div class="col-sm-5">
-					<input type="text" name="memberName" class="form-control" placeholder="用户名">
+					<input type="text" name="login_name" class="form-control" placeholder="登陆名">
 				</div>
 			</div>
 			<div class="form-group" style="height: 30px;">
