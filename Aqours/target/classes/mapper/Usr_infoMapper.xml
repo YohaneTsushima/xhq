@@ -3,7 +3,7 @@
 <mapper namespace="com.aq.dao.User_infoDao">
 
 	<insert id="registerUsr" parameterType="Usr_info" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-		insert into Usr_info(login_name, password, email, regDate) values(#{usr_info.login_name}, #{usr_info.password}, #{usr_info.email}, #{usr_info.regDate})
+		insert into Usr_info(login_name, password, email, usr_type, regDate) values(#{login_name}, #{password}, #{email}, #{usr_type}, #{regDate})
 	</insert>
 	
 	<update id="updateUsr" parameterType="Usr_info">
@@ -17,7 +17,7 @@
 		where id=#{id}
 	</update>
 	
-	<select id="getUsrByLoginName" parameterType="String">
-		select u.login_name u_login_name from Usr_info u where u.login_name = #{login_name}
+	<select id="getUsrByLoginName" parameterType="String" resultType="Usr_info">
+		select * from Usr_info u where u.login_name = #{login_name}
 	</select>
 </mapper>

@@ -49,22 +49,14 @@ jQuery(document).ready(function($) {
             }
 		}
 	});
-	
+	$("#login_name").focus();
 	//注册验证
 	$("#registForm").validate({
+		onblur:true,
 		rules:{
 			login_name: {
 				required: true,
-				remote:{
-					url:"${pageContext.request.contextPath}/checkMemberName",
-					type:"GET",
-					dataType:"json",
-					data:{
-						memberName:function(){
-							return $(".member_name").val();
-						}
-					}
-				}
+				remote: "${pageContext.request.contextPath}/usr_info/usrChk"
 			},
 			password: {
 				required: true,
@@ -110,6 +102,20 @@ jQuery(document).ready(function($) {
             } else {
                 error.insertAfter(element);
             }
+		},invalidHandler : function(){
+			return false;
+		},submitHandler : function(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/usr_info/usrRegister",
+				type:'post',
+				data:$("#registForm").serialize(),
+				error:function(){
+					alert("失败");
+				},
+				success:function(data){
+					alert('注册成功'+data.msg);
+				}
+			});
 		}
 	});
 });
@@ -136,7 +142,7 @@ jQuery(document).ready(function($) {
         	<div class="form-group" style="height: 30px;">
 				<label for="login_name" class="col-sm-2 control-label">登陆名</label>
 				<div class="col-sm-5">
-					<input type="text" name="login_name" class="form-control login_name" placeholder="登陆名">
+					<input type="text" id="login_name" name="login_name" class="form-control login_name" placeholder="登陆名">
 				</div>
 			</div>
 			<div class="form-group" style="height: 30px;">
