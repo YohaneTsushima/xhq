@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,10 +34,19 @@ public class Usr_infoController {
 	
 	@RequestMapping("/usrRegister")
 	@ResponseBody
-	public void register(Usr_info usr_info){
+	public void register(Usr_info usr_info, String validCode, HttpSession session){
 		
-		usr_info.setUsr_type(0);
-		usr_info.setRegDate(new Date());
-		user_infoBiz.registerUsr(usr_info);
+		try {
+			usr_info.setUsr_type(0);
+			usr_info.setRegDate(new Date());
+			user_infoBiz.registerUsr(usr_info);
+			String valid = (String) session.getAttribute("code");
+			if(!validCode.equalsIgnoreCase(valid)){
+				throw new Exception("验证码不正确");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 }
