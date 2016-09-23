@@ -11,7 +11,7 @@
 <div>
 	<nav class="navbar navbar-default" role="navigation">
 		<label class="navbar-brand" >欢迎你：${loginUser==''?loginUser.memberName:'游客' }</label>
-		
+		<img width="90" height="20" alt="loading" title="loading" src="${pageContext.request.contextPath }/images/err.gif">
 		<ul class="nav navbar-nav navbar-right cd-switcher" role="search" style="margin-top: 8px;">
 	    	<li><button type="submit" class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
 	    	<li><button type="submit" class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
@@ -47,7 +47,7 @@
 			 </div>
 			 <div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-			      <button style="margin-bottom: 10px;" type="submit" class="btn btn-success confirm">登陆</button>
+			      <button style="margin-bottom: 10px;" type="button" class="btn btn-success confirm">登陆</button>
 			 	</div>
 			 </div>
       	</form>

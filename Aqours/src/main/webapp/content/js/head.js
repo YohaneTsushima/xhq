@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
 		rules:{
 			login_name: {
 				required: true,
-				remote: "${pageContext.request.contextPath}/usr_info/usrChk"
+				remote: "/Aqours/usr_info/usrChk"
 			},
 			password: {
 				required: true,
@@ -59,7 +59,7 @@ jQuery(document).ready(function($) {
 		        email: true
 			},
 			validCode:{
-				remote: "${pageContext.request.contextPath}/usr_info/validChk",
+				remote: "/Aqours/usr_info/validChk",
 				required:true
 			}
 		},
@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
 			return false;
 		},submitHandler : function(){
 			$.ajax({
-				url:"${pageContext.request.contextPath}/usr_info/usrRegister",
+				url:"/Aqours/usr_info/usrRegister",
 				type:'post',
 				data:$("#registForm").serialize(),
 				error:function(){
@@ -128,9 +128,16 @@ jQuery(document).ready(function($) {
 });
 
 function changeImg() {
-    var imgSrc = $("#imgObj");
-    var src = imgSrc.attr("src");
-    imgSrc.attr("src", chgUrl(src));
+	var imgSrc = $("#imgObj"); 
+	if(imgSrc.attr("src") != '/Aqours/images/err.gif'){	
+		var src = imgSrc.attr("src");
+	    imgSrc.attr("height", "20");
+	    imgSrc.attr("width", "90");
+	    imgSrc.attr("src", "/Aqours/images/err.gif");
+	    setTimeout(function() {
+	    	imgSrc.attr("src", chgUrl(src));
+	    }, 1000);
+	}
 }
 
 function closeWindow(){
