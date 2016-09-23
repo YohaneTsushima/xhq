@@ -14,9 +14,7 @@ jQuery(document).ready(function($) {
 		$('.theme-popover-login').slideDown(200);
 	});
 	$('.theme-poptit .close').click(function(){
-		$('input').val('');
-		$('.theme-popover-mask').fadeOut(100);
-		$('.theme-popover').slideUp(200);
+		closeWindow();
 	});
 	
 	$('.theme-regist').click(function(){
@@ -71,6 +69,7 @@ jQuery(document).ready(function($) {
 		        email: true
 			},
 			validCode:{
+				remote: "${pageContext.request.contextPath}/usr_info/validChk",
 				required:true
 			}
 		},
@@ -92,6 +91,7 @@ jQuery(document).ready(function($) {
 				email: "请输入一个正确的邮箱"
 			},
 			validCode:{
+				remote: "验证码错误",
 				required:"请填写验证码"
 			}
 		},
@@ -118,8 +118,19 @@ jQuery(document).ready(function($) {
 				error:function(){
 					alert("失败");
 				},
-				success:function(data){
-					alert('注册成功'+data.msg);
+				success:function(formData, jqForm, options){
+					try{
+						debugger;
+					 	var result = eval("(" + formData + ")");
+						if(result.success){
+							alert(result.msg+ ',欢迎你' + result.user);
+							closeWindow();
+						}else{
+							alert(result.msg);
+						}
+					}catch (e){
+						alert('注册异常');
+					}
 				}
 			});
 		}
@@ -130,6 +141,12 @@ function changeImg() {
     var imgSrc = $("#imgObj");
     var src = imgSrc.attr("src");
     imgSrc.attr("src", chgUrl(src));
+}
+
+function closeWindow(){
+	$('input').val('');
+	$('.theme-popover-mask').fadeOut(100);
+	$('.theme-popover').slideUp(200);
 }
   
 function chgUrl(url) {
@@ -221,11 +238,12 @@ function chgUrl(url) {
 					<input type="text" name="email" class="form-control" placeholder="Email">
 				</div>
 			 </div>
-			 <div class="form-group" style="height: 30px;">
+			 <div class="form-group validCode" style="height: 30px;">
 				<label for="email" class="col-sm-2 control-label">验证码</label>
 				<div class="col-sm-3">
 					<input type="text" name="validCode" class="form-control" placeholder="请输入验证码">
 				</div>
+				<label class="errorValid"></label>
 			 </div>
 			 <div class="form-group" style="height: 30px;">
 			 	<label for="email" class="col-sm-2 control-label"></label>
