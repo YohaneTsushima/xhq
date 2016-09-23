@@ -73,9 +73,7 @@ public class Usr_infoController {
 			e.printStackTrace();
 			result.put("success", false);
 			result.put("msg", e.getMessage());
-		}
-		
-		response.getWriter().println(result.toString());
-		
+		}		
+		response.getWriter().println(result.toString());		
 	}
 }
