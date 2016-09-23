@@ -69,6 +69,9 @@ jQuery(document).ready(function($) {
 			email:{
 				required: true,
 		        email: true
+			},
+			validCode:{
+				required:true
 			}
 		},
 		messages:{
@@ -87,6 +90,9 @@ jQuery(document).ready(function($) {
 			email:{
 				required:"邮箱不能为空",
 				email: "请输入一个正确的邮箱"
+			},
+			validCode:{
+				required:"请填写验证码"
 			}
 		},
 		highlight :function(element){
@@ -119,6 +125,23 @@ jQuery(document).ready(function($) {
 		}
 	});
 });
+
+function changeImg() {
+    var imgSrc = $("#imgObj");
+    var src = imgSrc.attr("src");
+    imgSrc.attr("src", chgUrl(src));
+}
+  
+function chgUrl(url) {
+    var timestamp = (new Date()).valueOf();
+    //url = url.substring(0, 17);
+    if ((url.indexOf("&") >= 0)) {
+      url = url + "×tamp=" + timestamp;
+    } else {
+      url = url + "?timestamp=" + timestamp;
+    }
+    return url;
+}
 
 </script>
 <div>
@@ -160,7 +183,7 @@ jQuery(document).ready(function($) {
 			 </div>
 			 <div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-success confirm">登陆</button>
+			      <button style="margin-bottom: 10px;" type="submit" class="btn btn-success confirm">登陆</button>
 			 	</div>
 			 </div>
       	</form>
@@ -198,9 +221,21 @@ jQuery(document).ready(function($) {
 					<input type="text" name="email" class="form-control" placeholder="Email">
 				</div>
 			 </div>
+			 <div class="form-group" style="height: 30px;">
+				<label for="email" class="col-sm-2 control-label">验证码</label>
+				<div class="col-sm-3">
+					<input type="text" name="validCode" class="form-control" placeholder="请输入验证码">
+				</div>
+			 </div>
+			 <div class="form-group" style="height: 30px;">
+			 	<label for="email" class="col-sm-2 control-label"></label>
+				<div class="col-sm-5">
+					<a href="javascript:void(0);" onclick="changeImg()"><img style="margin-top: 8px;" id="imgObj" alt="验证码" src="${pageContext.request.contextPath }/validCode/createCode"></a>
+				</div>
+			 </div>
 			 <div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-warning register">注册</button>
+			      <button style="margin-bottom: 10px;" type="submit" class="btn btn-warning register">注册</button>
 			 	</div>
 			 </div>
       	</form>
