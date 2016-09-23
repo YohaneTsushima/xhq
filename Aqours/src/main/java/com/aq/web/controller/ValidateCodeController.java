@@ -15,8 +15,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * 
+ * @author chika
+ * 验证码生成控制器
+ */
 @Controller
 @RequestMapping("/validCode")
 public class ValidateCodeController {
