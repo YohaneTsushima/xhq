@@ -74,4 +74,14 @@ public class HomeController{
 		return "member-detail";
 	}
 	
+	@RequestMapping(value = "m-detail", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> member_detail(@RequestParam(name = "id", required = false, defaultValue = "0")int id){
+		
+		Map<String, Object> map = new HashMap<>();
+		Members members = memberBiz.getMemberDetail(id);
+		map.put("member", members);
+		
+		return map;
+	}
 }
