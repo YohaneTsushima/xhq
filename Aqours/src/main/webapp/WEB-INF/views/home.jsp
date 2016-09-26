@@ -31,6 +31,7 @@
 		}
 		
 	});
+
 </script>
 <div ng-app="myApp" ng-controller="memberCtrl">
 	<table class="table" style="height: 200px;">
