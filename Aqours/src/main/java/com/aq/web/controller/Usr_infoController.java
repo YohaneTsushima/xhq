@@ -65,7 +65,7 @@ public class Usr_infoController {
 				user_infoBiz.registerUsr(usr_info);
 				result.put("success", true);
 				result.put("msg", "注册成功");
-				result.put("user", usr_info.getLogin_name());			
+				result.put("user", usr_info.getLogin_name());
 			}
 			
 		} catch (Exception e) {

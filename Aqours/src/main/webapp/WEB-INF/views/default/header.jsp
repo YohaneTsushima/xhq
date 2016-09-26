@@ -8,6 +8,12 @@
 </style>
 <header>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/head.js"></script>
+<script type="text/javascript">
+	var app = angular.module('doLogin', []);
+	app.controller('login-controller', function($scope, $http) {
+		
+	});
+</script>
 <div>
 	<nav class="navbar navbar-default" role="navigation">
 		<label class="navbar-brand" >欢迎你：${loginUser==''?loginUser.memberName:'游客' }</label>
@@ -18,7 +24,7 @@
 	</nav>
 </div>
 <!-- 登陆 -->
-<div class="theme-popover theme-popover-login">
+<div class="theme-popover theme-popover-login" ng-app="doLogin" ng-controller="login-controller">
 	<div class="theme-poptit">
 		<a href="javascript:;" title="关闭" class="close">×</a>
 	    <h3>登录</h3>
@@ -46,7 +52,7 @@
 			 </div>
 			 <div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-			      <button style="margin-bottom: 10px;" type="button" class="btn btn-success confirm">登陆</button>
+			      <button ng-click="" style="margin-bottom: 10px;" type="button" class="btn btn-success confirm">登陆</button>
 			 	</div>
 			 </div>
       	</form>
