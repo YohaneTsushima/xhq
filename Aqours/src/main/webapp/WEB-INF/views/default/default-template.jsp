@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath }/js/angular.js"></script>
+<script src="${pageContext.request.contextPath }/js/angular-route.min.js"></script>
 
 <title></title>
 </head>
