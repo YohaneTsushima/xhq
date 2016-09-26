@@ -35,9 +35,52 @@ jQuery(document).ready(function($) {
             } else {
                 error.insertAfter(element);
             }
+		},
+		invalidHandler: function(){
+			return false;
+		},
+		submitHandler: function() {
+			$(".errorUser").text('');
+			$(".errorPwd").text('');
+			debugger;
+			$.ajax({
+				url:"/Aqours/usr_info/doLogin",
+				data:$("#loginForm").serialize(),
+				success:function(formData, jqForm, options){
+					try {
+						debugger;
+						var result = eval("(" + formData + ")");
+						if(result.success){
+							alert('ok');
+						}else{
+							if(result.errorUser != ""){
+								$(".errorUser").text(result.errorUser);
+							}else if(result.errorPwd != ""){
+								$(".errorPwd").text(result.errorPwd);
+							}
+							
+						}
+					} catch (e) {
+						// TODO: handle exception
+						alert('登陆异常');
+					}
+				}
+			});
 		}
 	});
 	$("#login_name").focus();
+	
+	$('input[name=validCode]').focus(function(){
+		$(".errorValid").text('');
+	});
+	$('input[name=login_name]').focus(function(){
+		$(".errorUser").text('');
+	});
+	$('input[name=password]').focus(function(){
+		$(".errorPwd").text('');
+	});
+		
+	
 	//注册验证
 	$("#registForm").validate({
 		onblur:true,
@@ -64,6 +107,7 @@ jQuery(document).ready(function($) {
 			}
 		},
 		messages:{
+			
 			login_name:{
 				required:"用户名不能为空",
 				remote:"用户已存在"
@@ -101,6 +145,7 @@ jQuery(document).ready(function($) {
 		},invalidHandler : function(){
 			return false;
 		},submitHandler : function(){
+			$(".errorValid").text('');
 			$.ajax({
 				url:"/Aqours/usr_info/usrRegister",
 				type:'post',
@@ -116,12 +161,13 @@ jQuery(document).ready(function($) {
 							alert(result.msg+ ',欢迎你' + result.user);
 							closeWindow();
 						}else{
-							alert(result.msg);
+							$(".errorValid").text(result.msg);
 						}
 					}catch (e){
 						alert('注册异常');
 					}
 				}
+				
 			});
 		}
 	});
@@ -129,6 +175,7 @@ jQuery(document).ready(function($) {
 
 function changeImg() {
 	var imgSrc = $("#imgObj"); 
+	$(".errorValid").text('');
 	if(imgSrc.attr("src") != '/Aqours/images/err.gif'){	
 		var src = imgSrc.attr("src");
 	    imgSrc.attr("height", "20");
@@ -142,6 +189,8 @@ function changeImg() {
 
 function closeWindow(){
 	$('input').val('');
+	$('.errorValid').text('');
+	$('.error').text('');
 	$('.theme-popover-mask').fadeOut(100);
 	$('.theme-popover').slideUp(200);
 }
