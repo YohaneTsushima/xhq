@@ -51,11 +51,12 @@ jQuery(document).ready(function($) {
 						debugger;
 						var result = eval("(" + formData + ")");
 						if(result.success){
-							alert('ok');
+							alert('欢迎你:'+result.msg);
+							location.reload();
 						}else{
-							if(result.errorUser != ""){
+							if(result.errorUser != undefined){
 								$(".errorUser").text(result.errorUser);
-							}else if(result.errorPwd != ""){
+							}else if(result.errorPwd != undefined){
 								$(".errorPwd").text(result.errorPwd);
 							}
 							

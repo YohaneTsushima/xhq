@@ -71,7 +71,7 @@ public class Usr_infoController {
 		response.setContentType("text/html; charset=utf-8");
 		try {
 			JSONObject result = user_infoBiz.checkLogin(user_infoBiz.getUsrByLoginName(login_name), password);
-			if(result.getString("success").equals(true)){
+			if(result.getString("success").equals("true")){
 				session.setAttribute("loginUser", result.get("loginUser"));
 				response.getWriter().println(result.getString("msg"));
 			}else {
