@@ -19,7 +19,7 @@
 	<!-- JDBC连接 properties文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- MongoDB 链接properties文件 -->
-	<context:property-placeholder location="classpath:MongoDB.properties" />
+	<!-- <context:property-placeholder location="classpath:MongoDB.properties" />
 	<mongo:mongo id="mongo" replica-set="${mongo.hostport}">
 		<mongo:options 
 			connections-per-host="${mongo.connectionsPerHost}"
@@ -39,10 +39,10 @@
 		<constructor-arg ref="mongo" />
 		<constructor-arg name="databaseName" value="mdb001" />
 	</bean>
-	<!-- mongodb 映射转换，根据注释，把他们转为mongodb的一个collection的映射 -->
+	mongodb 映射转换，根据注释，把他们转为mongodb的一个collection的映射
 	<mongo:mapping-converter base-package="com.aq.entity" />
-	<!-- mongodb 业务类接口 -->
-	<mongo:repositories base-package="com.aq.biz" />
+	mongodb 业务类接口
+	<mongo:repositories base-package="com.aq.biz.impl" /> -->
 	 
 	<!-- 配置dbcp数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
