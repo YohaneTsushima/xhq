@@ -65,7 +65,7 @@ public class Usr_infoBizImpl implements User_infoBiz{
 			result.put("success", false);
 		}else {
 			result.put("success", true);
-			result.put("msg", "登陆成功,欢迎你："+usr_info.getUsr_name());
+			result.put("msg", "登陆成功,欢迎你：" + usr_info.getLogin_name());
 			result.put("loginUser", usr_info);
 		}
 		

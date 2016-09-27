@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/head.js"></script>
 <div>
 	<nav class="navbar navbar-default" role="navigation">
-		<label class="navbar-brand" >欢迎你：${loginUser==''?loginUser.memberName:'游客' }</label>
+		<label class="navbar-brand" >欢迎你：${loginUser==''?loginUser.loginName:'游客' }</label>
 		<ul class="nav navbar-nav navbar-right cd-switcher" role="search" style="margin-top: 8px;">
 	    	<li><button type="button" class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
 	    	<li><button type="button" class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
