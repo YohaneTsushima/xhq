@@ -12,9 +12,10 @@
 <div>
 	<nav class="navbar navbar-default" role="navigation">
 		<label class="navbar-brand" >欢迎你：${loginUser==''?loginUser.loginName:'游客' }</label>
+		<img width="90" height="20" alt="loading" title="loading" src="${pageContext.request.contextPath }/images/err.gif">
 		<ul class="nav navbar-nav navbar-right cd-switcher" role="search" style="margin-top: 8px;">
-	    	<li><button type="button" class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
-	    	<li><button type="button" class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	    	<li><button type="submit" class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
+	    	<li><button type="submit" class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 	    </ul>
 	</nav>
 </div>
