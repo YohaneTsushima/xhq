@@ -6,8 +6,8 @@
 	color: red;
 	line-height: 35px;
 }
-.logout a{
-	margin-right: 20px;
+.logout{
+	padding-right: 20px;
 	line-height: 40px;
 }
 </style>
@@ -17,7 +17,8 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<label class="navbar-brand" >欢迎你：${loginUser != null ? loginUser.login_name : '游客' }</label>
 		<c:if test="${loginUser != null }">
-			<ul class="nav navbar-nav navbar-right cd-switcher logout" role="search" style="margin-top: 8px;">
+			<ul class="nav navbar-nav navbar-right logout" role="search" style="margin-top: 8px;">
+				<li><a href="" onclick="alert('还没搞啊');">修改个人资料</a></li>
 				<li><a href="${pageContenxt.request.contextPath }/Aqours/usr_info/doLogout">注销</a></li>
 			</ul>
 		</c:if>
