@@ -66,13 +66,15 @@ public class Usr_infoController {
 	}
 	
 	@RequestMapping("/doLogin")
+	@ResponseBody
 	public void doLogin(String login_name, String password, HttpSession session, HttpServletResponse response){
 		response.setContentType("text/html; charset=utf-8");
 		try {
 			JSONObject result = user_infoBiz.checkLogin(user_infoBiz.getUsrByLoginName(login_name), password);
-			if(result.getString("success").equals("true")){
-				session.setAttribute("loginUser", result.get("loginUser"));
-				response.getWriter().println(result.getString("msg"));
+			if(result.getBoolean("success")){
+				Usr_info usr = user_infoBiz.getUsrByLoginName(login_name);
+				session.setAttribute("loginUser", usr);
+				response.getWriter().println(result.toString());
 			}else {
 				response.getWriter().println(result.toString());
 			}
@@ -80,5 +82,11 @@ public class Usr_infoController {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("/doLogout")
+	public String doLogout(HttpSession session){
+		session.removeAttribute("loginUser");
+		return "redirect:/";
 	}
 }
