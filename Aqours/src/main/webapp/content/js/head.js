@@ -46,17 +46,17 @@ jQuery(document).ready(function($) {
 			$.ajax({
 				url:"/Aqours/usr_info/doLogin",
 				data:$("#loginForm").serialize(),
-				success:function(formData, jqForm, options){
+				dataType: "json",
+				success:function(result){
 					try {
-						debugger;
-						var result = eval("(" + formData + ")");
+						debugger; 
 						if(result.success){
-							alert('欢迎你:'+result.msg);
+							alert(result.msg);
 							location.reload();
 						}else{
-							if(result.errorUser != undefined){
+							if(result.errorUser != null){
 								$(".errorUser").text(result.errorUser);
-							}else if(result.errorPwd != undefined){
+							}else if(result.errorPwd != null){
 								$(".errorPwd").text(result.errorPwd);
 							}
 							
@@ -65,6 +65,10 @@ jQuery(document).ready(function($) {
 						// TODO: handle exception
 						alert('登陆异常');
 					}
+				},
+				error: function(textStatus, errorThrown){
+					debugger;
+					alert(textStatus);
 				}
 			});
 		}
