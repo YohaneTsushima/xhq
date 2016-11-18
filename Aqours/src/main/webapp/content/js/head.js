@@ -158,12 +158,11 @@ jQuery(document).ready(function($) {
 				error:function(){
 					alert("失败");
 				},
-				success:function(formData, jqForm, options){
+				success:function(result){
 					try{
 						debugger;
-					 	var result = eval("(" + formData + ")");
 						if(result.success){
-							alert(result.msg+ ',欢迎你' + result.user);
+							alert(result.msg);
 							closeWindow();
 						}else{
 							$(".errorValid").text(result.msg);
