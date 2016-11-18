@@ -1,22 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <br>
 <style>
 .error, .errorValid, .errorUser, .errorPwd{
 	color: red;
 	line-height: 35px;
 }
-
+.logout a{
+	margin-right: 20px;
+	line-height: 40px;
+}
 </style>
 <header>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/head.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/head.js?v=99"></script>
 <div>
 	<nav class="navbar navbar-default" role="navigation">
-		<label class="navbar-brand" >欢迎你：${loginUser==''?loginUser.loginName:'游客' }</label>
-		<img width="90" height="20" alt="loading" title="loading" src="${pageContext.request.contextPath }/images/err.gif">
-		<ul class="nav navbar-nav navbar-right cd-switcher" role="search" style="margin-top: 8px;">
-	    	<li><button type="submit" class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
-	    	<li><button type="submit" class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-	    </ul>
+		<label class="navbar-brand" >欢迎你：${loginUser != null ? loginUser.login_name : '游客' }</label>
+		<c:if test="${loginUser != null }">
+			<ul class="nav navbar-nav navbar-right cd-switcher logout" role="search" style="margin-top: 8px;">
+				<li><a href="${pageContenxt.request.contextPath }/Aqours/usr_info/doLogout">注销</a></li>
+			</ul>
+		</c:if>
+		<c:if test="${loginUser == null }">
+			<ul class="nav navbar-nav navbar-right cd-switcher" role="search" style="margin-top: 8px;">
+		    	<li><button type="submit" class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
+		    	<li><button type="submit" class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+		    </ul>
+		</c:if>
 	</nav>
 </div>
 <!-- 登陆 -->
