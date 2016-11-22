@@ -1,4 +1,4 @@
-package com.aq.entity;
+package com.aq.biz.impl;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -35,7 +35,7 @@ public class ImageCut {
 				BufferedImage tag = new BufferedImage(desWidth, desHeight, BufferedImage.TYPE_INT_RGB);
 				Graphics g = tag.getGraphics();
 				g.drawImage(img, 0, 0, null);
-				g.dispose();
+				//g.dispose();
 				//输出文件
 				ImageIO.write(tag, "JPEG", new File(srcImageFile + "_cut.jpg"));
 			}

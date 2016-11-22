@@ -2,28 +2,23 @@ package com.aq.web.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUpload;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aq.biz.User_infoBiz;
-import com.aq.entity.FileUploadUtil;
-import com.aq.entity.ImageCut;
-import com.aq.entity.Result;
+import com.aq.biz.impl.FileUploadUtil;
+import com.aq.biz.impl.ImageCut;
 import com.aq.entity.Usr_info;
 
 import net.sf.json.JSONObject;
@@ -103,7 +98,7 @@ public class Usr_infoController {
 		return "usr-edit";
 	}
 	
-	@RequestMapping(value = "/uploadImage")
+	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
 	public String upload(HttpServletRequest request,
 			@RequestParam(value = "x", required = false) String x,
 			@RequestParam(value = "y", required = false) String y,
@@ -111,20 +106,21 @@ public class Usr_infoController {
             @RequestParam(value = "w", required = false) String w,
             @RequestParam(value = "imgFile") MultipartFile imageFile) throws Exception{
 		System.out.println("==========Start=============");
-		String realPath = request.getSession().getServletContext().getRealPath("/");
-		String sourcePath = "resources/uploadImages/";
+		String realPath = "D:/myFile/wsp/resource/uploadImages/head/";
+		//String sourcePath = "resources/uploadImages/";
 		if(imageFile != null){
 			if(FileUploadUtil.allowUpload(imageFile.getContentType())){
-				String fileName = FileUploadUtil.rename(imageFile.getOriginalFilename());
+				Usr_info loginUser = (Usr_info) request.getSession().getAttribute("loginUser");
+				String fileName = FileUploadUtil.rename(imageFile.getOriginalFilename(), loginUser.getId());
 				int end = fileName.lastIndexOf(".");
 				String saveName = fileName.substring(0, end);
-				File dir = new File(realPath + sourcePath);
+				File dir = new File(realPath);
 				if(!dir.exists()){
 					dir.mkdirs();
 				}
 				File file = new File(dir, saveName + "_src.jpg");
 				imageFile.transferTo(file);
-				String srcImageFile = realPath + sourcePath + saveName;
+				String srcImageFile = realPath + saveName;
 				int imageX = Integer.parseInt(x);
                 int imageY = Integer.parseInt(y);
                 int imageH = Integer.parseInt(h);
@@ -133,6 +129,8 @@ public class Usr_infoController {
                 System.out.println("==========imageCutStart=============");
                 ImageCut.imgCut(srcImageFile, imageX, imageY, imageW, imageH);
                 System.out.println("==========imageCutEnd=============");
+                //request.getSession().setAttribute("imgSrc", sourcePath + saveName + "_src.jpg");//成功之后显示用
+                //request.getSession().setAttribute("imgCut", sourcePath + saveName + "_cut.jpg");//成功之后显示用
 			}
 		}
 		return "usr-edit";

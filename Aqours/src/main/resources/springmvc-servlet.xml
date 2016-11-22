@@ -57,5 +57,12 @@
 	      	</list>
 	   	</property>
 	</bean>
-
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/Aqours/usr_info/**"/>
+			<mvc:exclude-mapping path="/Aqours"/>
+			<bean class="com.aq.web.filter.SecurityInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
