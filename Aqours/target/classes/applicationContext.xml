@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx
+     	   http://www.springframework.org/schema/tx/spring-tx.xsd
+     	   http://www.springframework.org/schema/data/mongo 
+     	   http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+     	       	   
+	<context:component-scan base-package="com.aq"></context:component-scan>
+	<!-- JDBC连接 properties文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<!-- MongoDB 链接properties文件 -->
+	<!-- <context:property-placeholder location="classpath:MongoDB.properties" />
+	<mongo:mongo id="mongo" replica-set="${mongo.hostport}">
+		<mongo:options 
+			connections-per-host="${mongo.connectionsPerHost}"
+			threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
+			connect-timeout="${mongo.connectTimeout}"
+			max-wait-time="${mongo.maxWaitTime}"
+			auto-connect-retry="${mongo.autoConnectRetry}"
+			socket-keep-alive="${mongo.socketKeepAlive}"
+			socket-timeout="${mongo.socketTimeout}"
+			slave-ok="${mongo.slaveOk}"
+			write-number="1"
+			write-timeout="0"
+			write-fsync="true"/>
+	</mongo:mongo>
+	<mongo:db-factory dbname="mdb001" password="test" username="mdb001test" mongo-ref="mongo" />
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="mdb001" />
+	</bean>
+	mongodb 映射转换，根据注释，把他们转为mongodb的一个collection的映射
+	<mongo:mapping-converter base-package="com.aq.entity" />
+	mongodb 业务类接口
+	<mongo:repositories base-package="com.aq.biz.impl" /> -->
+	<!-- 文件解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760"></property>
+	</bean>
+	<!-- 图像解析器 -->
+	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" ></bean>
+	<!-- 配置dbcp数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="1"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="20"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="20"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="1"></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000"></property>
+	</bean>
+	
+	<!-- 配置MyBatis的SessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+		<property name="typeAliasesPackage" value="com.aq.entity" />
+	</bean>
+	<!-- 扫描DAO接口所在包名，Spring会自动代理生成其下的接口实现类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.aq.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	<!-- 事务管理器，用于事务通知  -->
+   	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean> 
+     <!-- 配置事务通知  -->
+     <!--  --><tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+    	<tx:method name="add*" propagation="REQUIRED" timeout="60" />
+            <tx:method name="update*" propagation="REQUIRED" timeout="60"  />
+            <tx:method name="delete*" propagation="REQUIRED"  timeout="60"  />
+            <tx:method name="get*" read-only="true" timeout="60" />
+            <tx:method name="fetch*" read-only="true" timeout="60" />
+        </tx:attributes>
+	</tx:advice> 
+	 <!-- AOP 事务通知 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.aq.biz..*.*(..))" id="bizMethod"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="bizMethod" />
+	</aop:config>  
+	
+</beans>

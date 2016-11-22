@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aq.dao.MembersDao">
+	<sql id="membersColums">
+		m.id m_id,
+		m.memberName m_memberName,
+		m.regDate m_regDate,
+		m.phone m_phone,
+		m.email m_email
+		from members m
+	</sql>
+	
+	<resultMap type="Members" id="membersResultMap">
+		<id column="m_id" property="id"/>
+		<result column="m_memberName" property="memberName"/>
+		<result column="m_regDate" property="regDate"/>
+		<result column="m_phone" property="phone"/>
+		<result column="m_email" property="email"/>
+	</resultMap>
+	
+	<select id="getAllMembers" parameterType="Page" resultMap="membersResultMap">
+		select <include refid="membersColums" /> limit #{page.pageNo}, #{page.pageSize}
+	</select>
+	
+	<select parameterType="int" id="getMemberDetail" resultMap="membersResultMap">
+		select <include refid="membersColums" /> where m.id = #{id}
+	</select>
+	
+	<select id="getMemberCount" resultType="int">
+		select count(m.id) from members m
+	</select>
+</mapper>
