@@ -1,4 +1,4 @@
-package com.aq.entity;
+package com.aq.biz.impl;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -12,10 +12,11 @@ public class FileUploadUtil {
 	);
 	
 	//重命名
-	public static String rename(String fileName){
-		int i = fileName.indexOf(".");
-		String str = fileName.substring(i);
-		return new Date().getTime()+""+ new Random().nextInt(99999999) +str;
+	public static String rename(String fileName, int id){
+
+		 int i = fileName.lastIndexOf(".");
+         String str = fileName.substring(i);
+         return new Date().getTime()+""+ new Random().nextInt(99999999) +str;
 	}
 	
 	//校验文件类型是否是被允许的
