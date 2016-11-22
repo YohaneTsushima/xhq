@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div>
-	<form name="form" action="${pageContext.request.contextPath }/usr_info/uploadImage" class="form-horizontal"  method="post" enctype="multipart/form-data">
+	<form name="form" action="${pageContext.request.contextPath }/edit_usr/uploadImage" class="form-horizontal"  method="post" enctype="multipart/form-data">
 	      <div class="modal-body text-center">
             <div class="zxx_main_con">
                 <div class="zxx_test_list">
