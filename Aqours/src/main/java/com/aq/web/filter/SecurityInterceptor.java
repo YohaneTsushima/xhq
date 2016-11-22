@@ -15,7 +15,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter{
 		// TODO Auto-generated method stub
 		Usr_info user = (Usr_info) request.getSession().getAttribute("loginUser");
 		if(user == null){
-			response.sendRedirect("localhost:8080/Aqours/");
+			response.sendRedirect(request.getContextPath() + "/home/");
 			return false;
 		} else {
 			return true;

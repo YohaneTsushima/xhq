@@ -15,19 +15,18 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/head.js?v=99"></script>
 <div>
 	<nav class="navbar navbar-default" role="navigation">
-		<label class="navbar-brand" >欢迎你：${loginUser != null ? loginUser.login_name : '游客' }</label>
-		<c:if test="${loginUser != null }">
-			<ul class="nav navbar-nav navbar-right logout" role="search" style="margin-top: 8px;">
-				<li><a href="${pageContext.request.contextPath }/usr_info/edit">修改个人资料</a></li>
-				<li><a href="${pageContenxt.request.contextPath }/Aqours/usr_info/doLogout">注销</a></li>
-			</ul>
-		</c:if>
-		<c:if test="${loginUser == null }">
-			<ul class="nav navbar-nav navbar-right cd-switcher" role="search" style="margin-top: 8px;">
-		    	<li><button type="submit" class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
-		    	<li><button type="submit" class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-		    </ul>
-		</c:if>
+		<label class="navbar-brand" style="line-height: 32px;">欢迎你：${loginUser != null ? loginUser.login_name : '游客' }</label>
+		<ul class="nav navbar-nav navbar-right logout" role="search" style="margin-top: 8px;">
+			<li><a href="${pageContext.request.contextPath }/home">首页</a></li>
+			<c:if test="${loginUser != null }">
+				<li><a href="${pageContext.request.contextPath }/edit_usr/edit">修改个人资料</a></li>
+				<li><a href="${pageContext.request.contextPath }/usr_info/doLogout">注销</a></li>
+			</c:if>
+			<c:if test="${loginUser == null }">
+		    	<li><button class="btn btn-warning theme-regist">注册</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
+		    	<li><button class="btn btn-info theme-login">登陆</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			</c:if>
+		</ul>
 	</nav>
 </div>
 <!-- 登陆 -->

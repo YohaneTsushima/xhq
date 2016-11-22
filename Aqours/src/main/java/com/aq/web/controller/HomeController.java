@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,24 +17,23 @@ import com.aq.entity.Members;
 import com.aq.entity.Page;
 
 @Controller
-@RequestMapping("/")
 public class HomeController{
 
 	@Autowired
 	private MembersBiz memberBiz;
 	
-	@RequestMapping("/")
-	public String home(HttpSession session) {
+	@RequestMapping("/home")
+	public String home() {
 		
 		return "home";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String loggin(){
 		return "login";
 	}
 	
-	@RequestMapping("member")
+	@RequestMapping("/member")
 	@ResponseBody
 	public Map<String, Object> getMember(Page page){
 		
@@ -66,7 +63,7 @@ public class HomeController{
 		return map;
 	}
 	
-	@RequestMapping(value="detail", method=RequestMethod.GET)
+	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String member_detail(Model model, @RequestParam(name="id", required=false, defaultValue="0")int id){
 		
 		Members members = memberBiz.getMemberDetail(id);

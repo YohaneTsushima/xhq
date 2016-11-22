@@ -1,9 +1,7 @@
 package com.aq.biz.impl;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 public class FileUploadUtil {
 
@@ -16,7 +14,8 @@ public class FileUploadUtil {
 
 		 int i = fileName.lastIndexOf(".");
          String str = fileName.substring(i);
-         return new Date().getTime()+""+ new Random().nextInt(99999999) +str;
+         fileName = id + "_head";
+         return fileName + str;
 	}
 	
 	//校验文件类型是否是被允许的
