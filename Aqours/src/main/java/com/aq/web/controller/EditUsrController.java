@@ -5,6 +5,7 @@ import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,15 +24,27 @@ public class EditUsrController {
 		return "usr-edit";
 	}
 	
+	@RequestMapping(value = "/editImage")
+	public String editImage(Model model){
+		model.addAttribute("action", "editImage");
+		return "usr-edit";
+	}
+	
+	@RequestMapping(value = "/menu")
+	public String menu(){
+		return "menu";
+	}
+	
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
-	public String upload(HttpServletRequest request,
-			@RequestParam(value = "x", required = false) String x,
-			@RequestParam(value = "y", required = false) String y,
-            @RequestParam(value = "h", required = false) String h,
-            @RequestParam(value = "w", required = false) String w,
+	public String uploadImage(HttpServletRequest request,
+			@RequestParam(value = "x1", required = false) String x1,
+			@RequestParam(value = "y1", required = false) String y1,
+            @RequestParam(value = "height", required = false) String height,
+            @RequestParam(value = "width", required = false) String width,
             @RequestParam(value = "imgFile") MultipartFile imageFile) throws Exception{
 		System.out.println("==========Start=============");
-		String realPath = "D:/myFile/wsp/resource/uploadImages/head/";
+		String realPath = request.getSession().getServletContext().getRealPath("/images/heads/") + "/";
+		
 		//String sourcePath = "resources/uploadImages/";
 		if(imageFile != null){
 			if(FileUploadUtil.allowUpload(imageFile.getContentType())){
@@ -46,10 +59,10 @@ public class EditUsrController {
 				File file = new File(dir, saveName + "_src.jpg");
 				imageFile.transferTo(file);
 				String srcImageFile = realPath + saveName;
-				int imageX = Integer.parseInt(x);
-                int imageY = Integer.parseInt(y);
-                int imageH = Integer.parseInt(h);
-                int imageW = Integer.parseInt(w);
+				int imageX = Integer.parseInt(x1);
+                int imageY = Integer.parseInt(y1);
+                int imageH = Integer.parseInt(height);
+                int imageW = Integer.parseInt(width);
                 //这里开始截取操作
                 System.out.println("==========imageCutStart=============");
                 ImageCut.imgCut(srcImageFile, imageX, imageY, imageW, imageH);
