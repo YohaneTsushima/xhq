@@ -7,6 +7,7 @@
 	<definition name="defaultTemplate" template="/WEB-INF/views/default/default-template.jsp">
 		<put-attribute name="title" value="Aqours"></put-attribute>
 		<put-attribute name="header" value="/WEB-INF/views/default/header.jsp" />
+		<put-attribute name="menu"/>
 		<put-attribute name="main" />
 	</definition>
 	
@@ -21,9 +22,14 @@
 		<put-attribute name="title" value="详细" />
 		<put-attribute name="main" value="/WEB-INF/views/member-detail.jsp" />
 	</definition>
-	<!-- 修改个人信息 -->
+	
+	<!-- 修改个人信息页面 -->
 	<definition name="usr-edit" extends="defaultTemplate">
 		<put-attribute name="title" value="修改个人信息" />
 		<put-attribute name="main" value="/WEB-INF/views/usr-edit.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />
 	</definition>
+<!-- 	<definition name="menu" template="/WEB-INF/views/menu.jsp">
+		<put-attribute name="prop" />
+	</definition> -->
 </tiles-definitions>

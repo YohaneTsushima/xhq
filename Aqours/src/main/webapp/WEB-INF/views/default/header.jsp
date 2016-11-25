@@ -19,6 +19,7 @@
 		<ul class="nav navbar-nav navbar-right logout" role="search" style="margin-top: 8px;">
 			<li><a href="${pageContext.request.contextPath }/home">首页</a></li>
 			<c:if test="${loginUser != null }">
+				<li><img src="${path}${loginUser.id}_head_cut.jpg" /></li>
 				<li><a href="${pageContext.request.contextPath }/edit_usr/edit">修改个人资料</a></li>
 				<li><a href="${pageContext.request.contextPath }/usr_info/doLogout">注销</a></li>
 			</c:if>
