@@ -33,6 +33,7 @@ function clearfFile(){
 }
 
 function addFile(btn){
+	debugger;
 	var filePath = $(btn).val();
 	var extStart = filePath.lastIndexOf(".");
 	var ext = filePath.substring(extStart, filePath.length).toUpperCase();
@@ -53,6 +54,7 @@ function addFile(btn){
 	        
 	        $('#prew').removeAttr('src');  
 	        $('#prew').attr('src', e.target.result); 
+	        alert(e.target.result);
 	        $('#cutimg').imgAreaSelect({ x1:0, y1:0, x2:100, y2:100, selectionColor:'aqua', selectionOpacity:0.1, aspectRatio: '1:1', maxWidth: 500, maxHeight: 500, onSelectChange: preview, handles: true, onSelectEnd: function(img, selection){
 	   		 	$('input[name="x1"]').val(selection.x1);
 	            $('input[name="y1"]').val(selection.y1);
